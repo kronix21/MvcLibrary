@@ -20,9 +20,24 @@ namespace MvcLibrary.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Book.ToListAsync());
+            if (_context.Book == null)
+            {
+                return Problem("Entity set 'MvcLibraryContext.Book'  is null.");
+            }
+
+
+            var books = from m in _context.Book
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Rating!.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+
+            return View(await books.ToListAsync());
         }
 
         // GET: Books/Details/5
