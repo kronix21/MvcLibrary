@@ -20,9 +20,22 @@ namespace MvcLibrary.Controllers
         }
 
         // GET: Presents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Present.ToListAsync());
+            if (_context.Present == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var movies = from m in _context.Present
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Geo_City!.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View(await movies.ToListAsync());
         }
 
         // GET: Presents/Details/5

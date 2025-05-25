@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcLibrary.Data;
 using MvcLibrary.Models;
+using MvcMovie.Models;
 
 namespace MvcLibrary.Controllers
 {
@@ -20,25 +21,38 @@ namespace MvcLibrary.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index(string searchString)
+        // GET: Movies
+        public async Task<IActionResult> Index(string BookRating, string searchString)
         {
             if (_context.Book == null)
             {
-                return Problem("Entity set 'MvcLibraryContext.Book'  is null.");
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
             }
 
-
-
+            // Use LINQ to get list of genres.
+            IQueryable<string> ratingQuery = from m in _context.Book
+                                            orderby m.Rating
+                                            select m.Rating;
             var books = from m in _context.Book
                          select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                books = books.Where(s => s.Rating!.ToUpper().Contains(searchString.ToUpper()));
+                books = books.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
             }
 
+            if (!string.IsNullOrEmpty(BookRating))
+            {
+                books = books.Where(x => x.Rating == BookRating);
+            }
 
-            return View(await books.ToListAsync());
+            var movieGenreVM = new MovieGenreViewModel
+            {
+                Rating = new SelectList(await ratingQuery.Distinct().ToListAsync()),
+                Books = await books.ToListAsync()
+            };
+
+            return View(movieGenreVM);
         }
 
         // GET: Books/Details/5

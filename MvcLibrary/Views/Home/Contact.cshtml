@@ -1,6 +1,52 @@
 ﻿@{
     ViewData["Title"] = "Контакты";
 }
-<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Title"]</h2>
 
-<p>Используйте эту страницу для ознакомления с контактами вашего сайта.</p>
+<style>
+
+    h1, h4 {
+        color: #2a5885;
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+        margin: 0 0 7px 0;
+    }
+
+    .social-icons img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<p>Название: Библиотека.ру </p>
+
+<h4>Контактные данные</h4>
+<div>
+    <p>Адрес: г.Ульновск, ул.Пушкина, д.22</p>
+    <p>Номер телефона: +7-953-431-12-11</p>
+    <p>График работы:</p>
+    <ul>
+        <li>Понедельник: 8:00 - 17:00;</li>
+        <li>Вторник: 8:00 - 17:00;</li>
+        <li>Среда: 8:00 - 17:00;</li>
+        <li>Четверг: 8:00 - 17:00;</li>
+        <li>Пятница: 8:00 - 15:00;</li>
+        <li>Суббота, Воскресенье - выходной</li>
+    </ul>
+    <p style="margin-bottom: 0px;">Cоц.сети:</p>
+    <div class="social-icons">
+        <a><img src="https://housegu.ru/local/templates/pets/images/vk.png" alt="ВКонтакте" /></a>
+        <a><img src="https://i.pinimg.com/736x/50/96/24/509624878021153b6916ac6d75f5dde3.jpg" alt="Телеграм" style="width: 60px; height: 60px;"/></a>
+    </div>
+
+    <p>Предостовляемые услуги:</p>
+    <ul>
+        <li>Покупка книг</li>
+        <li>Аренда книг</li>
+    </ul>
+</div>

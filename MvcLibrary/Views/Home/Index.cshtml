@@ -2,7 +2,80 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Добро пожаловать</h1>
-    <p>Узнайте о <a href="https://learn.microsoft.com/aspnet/core"> создании веб-приложений с помощью ASP.NET Core</a>.</p>
+<style>
+    .container {
+        max-width: 1200px;
+    }
+    .banner {
+        background-color: #e6f2ff;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+    .services {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+    .service {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 45%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .popular-books {
+        margin: 40px 0;
+    }
+    .book-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .book {
+        background: white;
+        width: 30%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+</style>
+
+<div class="container">
+    <div class="banner">
+        <h2>Добро пожаловать в нашу библиотеку!</h2>
+        <p>Открывайте новые миры с нашими книгами — покупайте или берите в аренду!</p>
+    </div>
+    <div class="services">
+        <div class="service">
+            <h3>Покупка книг</h3>
+            <p>Выберите книгу из нашего каталога и оформите заказ онлайн или в библиотеке.</p>
+        </div>
+        <div class="service">
+            <h3>Аренда книг</h3>
+            <p>Берите книги в аренду на любой срок — читайте и возвращайте!</p>
+        </div>
+    </div>
+    <div class="popular-books">
+        <h2>Популярные книги</h2>
+        <div class="book-list">
+            <div class="book">
+                <h3>Название книги 1</h3>
+                <p>Автор: Автор 1</p>
+                <p>Год: 2021</p>
+            </div>
+            <div class="book">
+                <h3>Название книги 2</h3>
+                <p>Автор: Автор 2</p>
+                <p>Год: 2022</p>
+            </div>
+            <div class="book">
+                <h3>Название книги 3</h3>
+                <p>Автор: Автор 3</p>
+                <p>Год: 2023</p>
+            </div>
+        </div>
+    </div>
 </div>

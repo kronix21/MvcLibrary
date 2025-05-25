@@ -20,9 +20,22 @@ namespace MvcLibrary.Controllers
         }
 
         // GET: Avtors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Avtor.ToListAsync());
+            if (_context.Avtor == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var movies = from m in _context.Avtor
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Name!.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View(await movies.ToListAsync());
         }
 
         // GET: Avtors/Details/5

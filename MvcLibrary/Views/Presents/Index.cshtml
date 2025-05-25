@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Создать</a>
 </p>
+<form asp-controller="Presents" asp-action="Index">
+    <p>
+        <label>Место расположения: <input type="text" name="SearchString" /></label>
+        <input type="submit" value="Отфильтровать" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
